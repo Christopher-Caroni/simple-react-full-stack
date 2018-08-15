@@ -1,12 +1,14 @@
 {
-  "extends": ["airbnb"],
-  "env": {
-    "browser": true,
-    "node": true
-  },
-  "rules": {
-    "no-console": "off",
-    "comma-dangle": "off",
-    "react/jsx-filename-extension": "off"
-  }
+    "extends": ["airbnb", "plugin:prettier/recommended", "prettier/react"],
+    "env": {
+        "browser": true,
+        "node": true
+    },
+    "plugins": ["prettier"],
+    "rules": {
+        "no-console": "off",
+        "comma-dangle": "off",
+        "react/jsx-filename-extension": "off",
+        "prettier/prettier": "error"
+    }
 }
