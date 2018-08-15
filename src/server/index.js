@@ -16,7 +16,7 @@ app.use(passport.session());
 
 app.use('/api/auth', AuthRouter);
 
-app.use(express.static('dist'));
+app.use('/web', express.static('dist'));
 
 app.get('/api/getUsername', (req, res) =>
     res.send({ username: os.userInfo().username })

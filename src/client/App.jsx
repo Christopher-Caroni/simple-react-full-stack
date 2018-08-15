@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import './app.css';
+import '../../semantic/dist/semantic.min.css';
 import ReactImage from './react.png';
 
 export default class App extends PureComponent {

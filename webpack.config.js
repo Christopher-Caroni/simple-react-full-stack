@@ -9,6 +9,7 @@ module.exports = {
     output: {
         path: path.join(__dirname, outputDirectory),
         filename: 'bundle.js',
+        publicPath: '/web/',
     },
     module: {
         rules: [
@@ -25,19 +26,31 @@ module.exports = {
             },
             {
                 test: /\.(png|woff|woff2|eot|ttf|svg)$/,
-                loader: 'url-loader?limit=100000',
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            limit: 8192,
+                            fallback: 'file-loader',
+                        },
+                    },
+                ],
             },
         ],
     },
     resolve: {
         extensions: ['.js', '.jsx'],
     },
+    devtool: 'inline-source-map',
     devServer: {
         port: 3000,
         open: true,
+        openPage: 'web',
         proxy: {
             '/api': 'http://localhost:8080',
         },
+        publicPath: '/web',
+        historyApiFallback: true,
     },
     plugins: [
         new CleanWebpackPlugin([outputDirectory]),
