@@ -28,7 +28,7 @@ AuthRouter.post(
     passport.authenticate(LOCAL_STRATEGY_KEY),
     (req, res) => {
         if (req.isAuthenticated) {
-            res.redirect('/');
+            res.status(200).json(req.user);
         } else {
             res.status(401).end({ msg: 'Authentication failed' });
         }
@@ -52,7 +52,7 @@ AuthRouter.post('/register', (req, res, next) => {
 
 AuthRouter.post('/logout', (req, res) => {
     req.logout();
-    res.redirect('/login');
+    res.status(204).end();
 });
 
 AuthRouter.get('/', (req, res) => {
