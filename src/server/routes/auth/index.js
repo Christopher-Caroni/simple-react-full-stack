@@ -40,7 +40,7 @@ AuthRouter.post('/register', (req, res, next) => {
         .then(user => {
             req.login(user, err => {
                 if (err) next(err);
-                else res.redirect('/');
+                else res.json(user);
             });
         })
         .catch(err => {

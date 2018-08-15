@@ -51,7 +51,38 @@ export function refreshCurrentUser() {
         );
 }
 
-export function signup() {
-    console.log('TODO');
-    return loginFailure();
+function signupRequest(user) {
+    return {
+        type: authConstants.REGISTER_REQUEST,
+        payload: { user },
+    };
+}
+
+function signupSuccess(user) {
+    return {
+        type: authConstants.REGISTER_SUCCESS,
+        payload: { user },
+    };
+}
+
+function signupFailure(error) {
+    return {
+        type: authConstants.REGISTER_FAILURE,
+        payload: { error },
+    };
+}
+
+export function signup(user) {
+    return dispatch => {
+        dispatch(signupRequest(user));
+
+        return axios.get(`${USER_API_URL}/register`).then(
+            res => {
+                dispatch(signupSuccess(res.data));
+            },
+            err => {
+                dispatch(signupFailure(err));
+            }
+        );
+    };
 }

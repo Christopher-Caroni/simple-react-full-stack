@@ -28,9 +28,7 @@ export default function userReducer(state = initialState, action) {
             };
         case authConstants.LOGIN_FAILURE:
             return {
-                ...state,
-                loggingIn: false,
-                authenticated: false,
+                ...initialState,
                 loginError,
             };
         case authConstants.LOGIN_SUCCESS:
@@ -38,6 +36,22 @@ export default function userReducer(state = initialState, action) {
                 ...state,
                 loggingIn: false,
                 authenticated: true,
+                user,
+            };
+        case authConstants.REGISTER_REQUEST:
+            return {
+                ...state,
+                loggingIn: true,
+            };
+        case authConstants.REGISTER_FAILURE:
+            return {
+                ...initialState,
+            };
+        case authConstants.REGISTER_SUCCESS:
+            return {
+                ...state,
+                loggingIn: false,
+                loginError,
                 user,
             };
         default:
