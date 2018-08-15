@@ -17,6 +17,9 @@
         "react/jsx-filename-extension": "off",
         "prettier/prettier": "error",
         "react/prop-types": "warning",
-        "babel/semi": 1
+        "babel/semi": 1,
+        "func-names": 0,
+        "prefer-destructuring": 1,
+        "no-underscore-dangle": 0
     }
 }
