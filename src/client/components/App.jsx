@@ -1,7 +1,10 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import '../app.css';
 import '../../../semantic/dist/semantic.min.css';
+import '../app.css';
+
+import PropTypes from 'prop-types';
+import React, { PureComponent } from 'react';
+import { Button, Container, Segment } from 'semantic-ui-react';
+
 import ReactImage from '../react.png';
 
 export default class App extends PureComponent {
@@ -13,6 +16,9 @@ export default class App extends PureComponent {
                 username: PropTypes.string.isRequired,
             }).isRequired,
         }).isRequired,
+
+        refreshUser: PropTypes.func.isRequired,
+        login: PropTypes.func.isRequired,
     };
 
     render() {
@@ -22,6 +28,8 @@ export default class App extends PureComponent {
                 loggingIn,
                 user: { username },
             },
+            refreshUser,
+            login,
         } = this.props;
 
         let text;
@@ -36,10 +44,18 @@ export default class App extends PureComponent {
         }
 
         return (
-            <div>
-                <h1>{text}</h1>
-                <img src={ReactImage} alt="react" />
-            </div>
+            <Container>
+                <Segment>
+                    <h1>{text}</h1>
+                    <Button
+                        content="Refresh login info"
+                        onClick={refreshUser}
+                    />
+                </Segment>
+                <Segment>
+                    <img src={ReactImage} alt="react" />
+                </Segment>
+            </Container>
         );
     }
 }

@@ -11,7 +11,6 @@ function loginRequest(user) {
 }
 
 function loginSuccess(user) {
-    console.log('login success', user);
     return {
         type: authConstants.LOGIN_SUCCESS,
         payload: { user },
@@ -19,7 +18,6 @@ function loginSuccess(user) {
 }
 
 function loginFailure(error) {
-    console.error('login failure', error);
     return {
         type: authConstants.LOGIN_FAILURE,
         payload: { error },

@@ -8,7 +8,6 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = state => {
-    console.dir(state);
     const { auth } = state;
     return {
         auth,
