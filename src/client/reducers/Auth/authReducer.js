@@ -24,27 +24,21 @@ export default function userReducer(state = initialState, action) {
         case authConstants.LOGIN_REQUEST:
             return {
                 ...state,
-                auth: {
-                    loggingIn: true,
-                },
+                loggingIn: true,
             };
         case authConstants.LOGIN_FAILURE:
             return {
                 ...state,
-                auth: {
-                    loggingIn: false,
-                    authenticated: false,
-                    loginError,
-                },
+                loggingIn: false,
+                authenticated: false,
+                loginError,
             };
         case authConstants.LOGIN_SUCCESS:
             return {
                 ...state,
-                auth: {
-                    loggingIn: false,
-                    authenticated: true,
-                    user,
-                },
+                loggingIn: false,
+                authenticated: true,
+                user,
             };
         default:
             return state;
