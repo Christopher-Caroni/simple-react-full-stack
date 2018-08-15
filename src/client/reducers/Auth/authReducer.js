@@ -6,15 +6,16 @@ const initialUser = {
 
 const initialState = {
     authenticated: false,
-    loggingIn: false,
+    authInProgress: false,
     user: {
         username: '',
     },
+    authError: undefined,
 };
 
 export default function userReducer(state = initialState, action) {
     const {
-        payload: { error: loginError, user } = {
+        payload: { error: authError, user } = {
             error: new Error('Encountered unknown error while logging in'),
             user: initialUser,
         },
@@ -24,24 +25,24 @@ export default function userReducer(state = initialState, action) {
         case authConstants.LOGIN_REQUEST:
             return {
                 ...state,
-                loggingIn: true,
+                authInProgress: true,
             };
         case authConstants.LOGIN_FAILURE:
             return {
                 ...initialState,
-                loginError,
+                authError,
             };
         case authConstants.LOGIN_SUCCESS:
             return {
                 ...state,
-                loggingIn: false,
+                authInProgress: false,
                 authenticated: true,
                 user,
             };
         case authConstants.REGISTER_REQUEST:
             return {
                 ...state,
-                loggingIn: true,
+                authInProgress: true,
             };
         case authConstants.REGISTER_FAILURE:
             return {
@@ -50,8 +51,8 @@ export default function userReducer(state = initialState, action) {
         case authConstants.REGISTER_SUCCESS:
             return {
                 ...state,
-                loggingIn: false,
-                loginError,
+                authInProgress: false,
+                authError,
                 user,
             };
         default:

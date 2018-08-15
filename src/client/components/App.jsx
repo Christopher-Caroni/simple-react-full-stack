@@ -11,7 +11,7 @@ export default class App extends PureComponent {
     static propTypes = {
         auth: PropTypes.shape({
             authenticated: PropTypes.bool.isRequired,
-            loggingIn: PropTypes.bool.isRequired,
+            authInProgress: PropTypes.bool.isRequired,
             user: PropTypes.shape({
                 username: PropTypes.string.isRequired,
             }).isRequired,
@@ -25,7 +25,7 @@ export default class App extends PureComponent {
         const {
             auth: {
                 authenticated,
-                loggingIn,
+                authInProgress,
                 user: { username },
             },
             refreshUser,
@@ -37,7 +37,7 @@ export default class App extends PureComponent {
             text = username
                 ? `Bienvenue ${username}`
                 : `Erreur de récupération de votre pseudo`;
-        } else if (loggingIn) {
+        } else if (authInProgress) {
             text = 'Connexion en cours...';
         } else {
             text = `Vous n'êtes pas connecté`;

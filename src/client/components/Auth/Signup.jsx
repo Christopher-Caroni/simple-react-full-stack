@@ -7,7 +7,7 @@ export class Signup extends Component {
         signup: PropTypes.func.isRequired,
 
         auth: PropTypes.shape({
-            loginError: PropTypes.shape({
+            authError: PropTypes.shape({
                 response: PropTypes.shape({
                     status: PropTypes.number.isRequired,
                 }).isRequired,
@@ -41,7 +41,7 @@ export class Signup extends Component {
     errorMessage = () => {
         const { errMessage } = this.state;
         const {
-            loginError: { response: { status } } = { response: { status: 0 } },
+            authError: { response: { status } } = { response: { status: 0 } },
         } = this.props;
 
         if (errMessage) return errMessage;
@@ -55,9 +55,9 @@ export class Signup extends Component {
 
     render() {
         const { isLoading, username, password, errMessage } = this.state;
-        const { loginError } = this.props;
+        const { authError } = this.props;
 
-        const error = !!errMessage || !!loginError;
+        const error = !!errMessage || !!authError;
 
         return (
             <div>
