@@ -2,7 +2,9 @@ import mongoose from 'mongoose';
 import winston from '../config/winston';
 
 const ENV = process.env.NODE_ENV || 'dev';
-const MONGO_URL = process.env.MONGO_URL || `mongodb://localhost/${ENV}`;
+const MONGO_URL = process.env.MONGO_URL || `mongodb://localhost:27017/${ENV}`;
+
+winston.info(`Mongoose Connecting to ${MONGO_URL}`);
 
 mongoose
     .connect(

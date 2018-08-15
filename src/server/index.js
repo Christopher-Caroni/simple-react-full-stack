@@ -22,4 +22,4 @@ app.get('/api/getUsername', (req, res) =>
     res.send({ username: os.userInfo().username })
 );
 
-app.listen(8080, () => console.log('Listening on port 8080!'));
+app.listen(8080, () => winston.info('Express server listening on port 8080!'));
