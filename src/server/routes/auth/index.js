@@ -56,9 +56,11 @@ AuthRouter.post('/logout', (req, res) => {
 });
 
 AuthRouter.get('/', (req, res) => {
-    if (req.isAuthenticated) {
+    if (req.isAuthenticated && req.user) {
+        console.log('User is authenticated', req.user);
         res.json(req.user);
     } else {
+        console.log('No user in session');
         res.status(401).json({ msg: 'No user logged in' });
     }
 });
