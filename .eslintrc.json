@@ -20,6 +20,8 @@
         "babel/semi": 1,
         "func-names": 0,
         "prefer-destructuring": 1,
-        "no-underscore-dangle": 0
+        "no-underscore-dangle": 0,
+        "import/prefer-default-export": 1,
+        "no-unused-vars": 1
     }
 }
