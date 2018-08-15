@@ -50,3 +50,8 @@ export function refreshCurrentUser() {
             }
         );
 }
+
+export function signup() {
+    console.log('TODO');
+    return loginFailure();
+}
