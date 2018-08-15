@@ -12,17 +12,21 @@
   },
   "author": "Christopher Caroni",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Christopher-Caroni/simple-react-full-stack.git"
+  },
   "dependencies": {
     "express": "^4.16.3",
     "react": "^16.4.2",
     "react-dom": "^16.4.2"
   },
   "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-loader": "^7.1.5",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-react": "^6.24.1",
+    "@babel/core": "^7.0.0-rc.1",
+    "@babel/plugin-proposal-class-properties": "^7.0.0-rc.1",
+    "@babel/preset-env": "^7.0.0-rc.1",
+    "@babel/preset-react": "^7.0.0-rc.1",
+    "babel-loader": "^8.0.0-beta.4",
     "clean-webpack-plugin": "^0.1.19",
     "concurrently": "^3.6.1",
     "css-loader": "^1.0.0",
