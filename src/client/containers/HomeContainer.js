@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
-import { refreshCurrentUser, login } from '../actions/Auth/authActions';
-import App from '../components/App';
+
+import { login, refreshCurrentUser } from '../actions/Auth/authActions';
+import Home from '../components/Home';
 
 const mapDispatchToProps = dispatch => ({
     refreshUser: () => dispatch(refreshCurrentUser()),
@@ -14,9 +15,9 @@ const mapStateToProps = state => {
     };
 };
 
-const AppContainer = connect(
+const HomeContainer = connect(
     mapStateToProps,
     mapDispatchToProps
-)(App);
+)(Home);
 
-export default AppContainer;
+export default HomeContainer;

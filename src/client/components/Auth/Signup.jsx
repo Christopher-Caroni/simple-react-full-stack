@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Form, Message } from 'semantic-ui-react';
+import { Form, Message, Segment, Header } from 'semantic-ui-react';
 
 export class Signup extends Component {
     static propTypes = {
@@ -49,7 +49,7 @@ export class Signup extends Component {
         switch (status) {
             default:
             case 401:
-                return 'Authentification échouée. Vérifiez votre saisie';
+                return 'Login failed, please verify your credentials';
         }
     };
 
@@ -60,7 +60,10 @@ export class Signup extends Component {
         const error = !!errMessage || !!authError;
 
         return (
-            <div>
+            <Segment stacked>
+                <Header content="Your app here" />
+                <Header as="h3" content="Please signup" />
+
                 <Form loading={isLoading} error={error} onSubmit={this.submit}>
                     <Form.Input
                         fluid
@@ -74,6 +77,7 @@ export class Signup extends Component {
                         fluid
                         label="Mot de passe"
                         placeholder="Entrez votre mot de passe"
+                        type="password"
                         name="password"
                         value={password}
                         onChange={this.handleChange}
@@ -81,7 +85,7 @@ export class Signup extends Component {
 
                     <Message header="Erreur" content={this.errorMessage()} />
                 </Form>
-            </div>
+            </Segment>
         );
     }
 }

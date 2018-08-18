@@ -3,10 +3,9 @@ import authConstants from '../../constants/Auth/authConstants';
 
 const USER_API_URL = '/api/auth';
 
-function loginRequest(user) {
+function loginRequest() {
     return {
         type: authConstants.LOGIN_REQUEST,
-        payload: { user },
     };
 }
 
@@ -26,7 +25,7 @@ function loginFailure(error) {
 
 export function login(user) {
     return dispatch => {
-        dispatch(loginRequest(user));
+        dispatch(loginRequest());
 
         return axios.post(`${USER_API_URL}/login`, user).then(
             res => {
@@ -51,10 +50,9 @@ export function refreshCurrentUser() {
         );
 }
 
-function signupRequest(user) {
+function signupRequest() {
     return {
         type: authConstants.REGISTER_REQUEST,
-        payload: { user },
     };
 }
 
@@ -72,11 +70,11 @@ function signupFailure(error) {
     };
 }
 
-export function signup(user) {
+export function signup(userCredentials) {
     return dispatch => {
-        dispatch(signupRequest(user));
+        dispatch(signupRequest());
 
-        return axios.get(`${USER_API_URL}/register`).then(
+        return axios.get(`${USER_API_URL}/register`, userCredentials).then(
             res => {
                 dispatch(signupSuccess(res.data));
             },
