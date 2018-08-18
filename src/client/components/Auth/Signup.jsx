@@ -9,7 +9,8 @@ export class Signup extends Component {
         auth: PropTypes.shape({
             signupError: PropTypes.shape({
                 msg: PropTypes.string.isRequired,
-                isUserError: PropTypes.bool.isRequired,
+                usernameError: PropTypes.bool,
+                passwordError: PropTypes.bool,
             }),
         }).isRequired,
     };
@@ -35,17 +36,20 @@ export class Signup extends Component {
     render() {
         const { isLoading, username, password, passwordConf } = this.state;
         const {
-            auth: {
-                signupError: {
-                    msg: errorMessage,
-                    usernameError,
-                    passwordError,
-                },
-                signupError,
-            },
+            auth: { signupError },
         } = this.props;
 
-        const hasError = !!signupError;
+        const {
+            msg: errorMessage,
+            usernameError,
+            passwordError,
+        } = signupError || {
+            noError: true,
+            usernameError: false,
+            passwordError: false,
+        };
+
+        const hasError = !!signupError && !signupError.noError;
 
         return (
             <Grid verticalAlign="middle" centered>
