@@ -74,7 +74,7 @@ export function signup(userCredentials) {
     return dispatch => {
         dispatch(signupRequest());
 
-        return axios.get(`${USER_API_URL}/register`, userCredentials).then(
+        return axios.post(`${USER_API_URL}/register`, userCredentials).then(
             res => {
                 dispatch(signupSuccess(res.data));
             },

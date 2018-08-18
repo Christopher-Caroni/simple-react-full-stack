@@ -1,18 +1,14 @@
 import './db';
-import './middlewares';
 import winston from './config/winston';
 import AuthRouter from './routes/auth';
+import applyAppMiddlewares from './middlewares';
 
 const express = require('express');
 const os = require('os');
-const morgan = require('morgan');
-const passport = require('passport');
 
 const app = express();
 
-app.use(morgan('combined', { stream: winston.stream }));
-app.use(passport.initialize());
-app.use(passport.session());
+applyAppMiddlewares(app);
 
 app.use('/api/auth', AuthRouter);
 

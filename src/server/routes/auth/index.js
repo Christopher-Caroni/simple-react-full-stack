@@ -1,9 +1,8 @@
 import User from '../../db/models/User';
 
-import LOCAL_STRATEGY_KEY from '../../middlewares/passport';
+import { passport, LOCAL_STRATEGY_KEY } from '../../middlewares/passport';
 
 const express = require('express');
-const passport = require('passport');
 
 const AuthRouter = express.Router();
 
@@ -35,7 +34,14 @@ AuthRouter.post(
     }
 );
 AuthRouter.post('/register', (req, res, next) => {
-    const { username, password } = req.body;
+    const { username, password, passwordConf } = req.body;
+    if (!username || !password || !passwordConf) {
+        res.status(400).json({ msg: 'The fiels are not filled in' });
+    }
+    if (password !== passwordConf) {
+        res.status(400).json({ msg: 'The passwords are not the same' });
+    }
+
     User.create({ username, password })
         .then(user => {
             req.login(user, err => {

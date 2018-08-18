@@ -13,3 +13,7 @@ mongoose
     )
     .then(() => winston.info('Mongo connected'))
     .catch(err => winston.error('Mongo connection error', err));
+
+const dbConnection = mongoose.connection;
+
+export default dbConnection;

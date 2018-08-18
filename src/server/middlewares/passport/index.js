@@ -12,4 +12,4 @@ passport.deserializeUser((userId, done) => {
     User.findById(userId, (err, user) => done(err, user));
 });
 
-export default LOCAL_STRATEGY_KEY;
+export { passport, LOCAL_STRATEGY_KEY };
