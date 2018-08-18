@@ -9,6 +9,7 @@ export class Signup extends Component {
         auth: PropTypes.shape({
             signupError: PropTypes.shape({
                 msg: PropTypes.string.isRequired,
+                isUserError: PropTypes.bool.isRequired,
             }),
         }).isRequired,
     };
@@ -34,11 +35,17 @@ export class Signup extends Component {
     render() {
         const { isLoading, username, password, passwordConf } = this.state;
         const {
-            auth: { signupError },
+            auth: {
+                signupError: {
+                    msg: errorMessage,
+                    usernameError,
+                    passwordError,
+                },
+                signupError,
+            },
         } = this.props;
 
         const hasError = !!signupError;
-        const errorMessage = hasError ? signupError.msg : 'Unknown error';
 
         return (
             <Grid verticalAlign="middle" centered>
@@ -63,6 +70,7 @@ export class Signup extends Component {
                                 type="text"
                                 name="username"
                                 value={username}
+                                error={usernameError}
                                 onChange={this.handleChange}
                             />
                             <Form.Input
@@ -73,6 +81,7 @@ export class Signup extends Component {
                                 type="password"
                                 name="password"
                                 value={password}
+                                error={passwordError}
                                 onChange={this.handleChange}
                             />
                             <Form.Input
@@ -83,6 +92,7 @@ export class Signup extends Component {
                                 type="password"
                                 name="passwordConf"
                                 value={passwordConf}
+                                error={passwordError}
                                 onChange={this.handleChange}
                             />
 

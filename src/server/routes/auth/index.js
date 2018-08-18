@@ -38,11 +38,18 @@ AuthRouter.post('/register', (req, res, next) => {
     const { username, password, passwordConf } = req.body;
     winston.info(`Register request with username: ${username}`);
     if (!username || !password || !passwordConf) {
-        res.status(400).json({ msg: 'The fields are not filled in' });
+        res.status(400).json({
+            msg: 'The fields are not filled in',
+            usernameError: true,
+            passwordError: true,
+        });
         return;
     }
     if (password !== passwordConf) {
-        res.status(400).json({ msg: 'The passwords are not the same' });
+        res.status(400).json({
+            msg: 'The passwords are not the same',
+            passwordError: true,
+        });
         return;
     }
 
@@ -55,7 +62,10 @@ AuthRouter.post('/register', (req, res, next) => {
         })
         .catch(err => {
             if (err.name === 'ValidationError') {
-                res.status(409).json('Username already taken');
+                res.status(409).json({
+                    msg: 'Username already taken',
+                    usernameError: true,
+                });
             } else next(err);
         });
 });
