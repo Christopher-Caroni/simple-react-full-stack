@@ -50,7 +50,9 @@ module.exports = {
             '/api': 'http://localhost:8080',
         },
         publicPath: '/web',
-        historyApiFallback: true,
+        historyApiFallback: {
+            index: '/web',
+        },
     },
     plugins: [
         new CleanWebpackPlugin([outputDirectory]),
