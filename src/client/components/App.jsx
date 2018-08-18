@@ -2,14 +2,15 @@ import '../../../semantic/dist/semantic.min.css';
 import '../app.css';
 
 import React from 'react';
+import { hot } from 'react-hot-loader';
 import { Link, Route, Switch } from 'react-router-dom';
-import { Container, List, Segment } from 'semantic-ui-react';
+import { List, Segment } from 'semantic-ui-react';
 
 import SignupContainer from '../containers/Auth/SignupContainer';
 import HomeContainer from '../containers/HomeContainer';
 
 const App = () => (
-    <Container>
+    <>
         <Segment>
             <List bulleted>
                 <List.Item>
@@ -28,7 +29,7 @@ const App = () => (
             <Route exact path="/web/signup" component={SignupContainer} />
             <Route exact path="/web" component={HomeContainer} />
         </Switch>
-    </Container>
+    </>
 );
 
-export default App;
+export default hot(module)(App);
