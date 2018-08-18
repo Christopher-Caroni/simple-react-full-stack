@@ -64,10 +64,10 @@ function signupSuccess(user) {
     };
 }
 
-function signupFailure(error) {
+function signupFailure(signupError) {
     return {
         type: authConstants.REGISTER_FAILURE,
-        payload: { error },
+        payload: { signupError },
     };
 }
 

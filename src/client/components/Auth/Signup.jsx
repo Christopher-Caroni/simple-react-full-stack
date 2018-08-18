@@ -7,7 +7,7 @@ export class Signup extends Component {
         signup: PropTypes.func.isRequired,
 
         auth: PropTypes.shape({
-            authError: PropTypes.shape({
+            signupError: PropTypes.shape({
                 msg: PropTypes.string.isRequired,
             }),
         }).isRequired,
@@ -34,11 +34,11 @@ export class Signup extends Component {
     render() {
         const { isLoading, username, password, passwordConf } = this.state;
         const {
-            auth: { authError },
+            auth: { signupError },
         } = this.props;
 
-        const hasError = !!authError;
-        const errorMessage = hasError ? authError.msg : 'Unknown error';
+        const hasError = !!signupError;
+        const errorMessage = hasError ? signupError.msg : 'Unknown error';
 
         return (
             <Grid verticalAlign="middle" centered>

@@ -15,8 +15,9 @@ const initialState = {
 
 export default function userReducer(state = initialState, action) {
     const {
-        payload: { error: authError, user } = {
-            error: new Error('Encountered unknown error while logging in'),
+        payload: { authError, signupError, user } = {
+            authError: new Error('Unknown error'),
+            signupError: new Error('Unknown error'),
             user: initialUser,
         },
     } = action;
@@ -47,7 +48,7 @@ export default function userReducer(state = initialState, action) {
         case authConstants.REGISTER_FAILURE:
             return {
                 ...initialState,
-                authError,
+                signupError,
             };
         case authConstants.REGISTER_SUCCESS:
             return {
