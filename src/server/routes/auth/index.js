@@ -38,7 +38,7 @@ AuthRouter.post('/register', (req, res, next) => {
     const { username, password, passwordConf } = req.body;
     winston.info(`Register request with username: ${username}`);
     if (!username || !password || !passwordConf) {
-        res.status(400).json({ msg: 'The fiels are not filled in' });
+        res.status(400).json({ msg: 'The fields are not filled in' });
         return;
     }
     if (password !== passwordConf) {

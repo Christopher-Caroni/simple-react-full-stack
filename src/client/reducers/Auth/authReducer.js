@@ -47,12 +47,12 @@ export default function userReducer(state = initialState, action) {
         case authConstants.REGISTER_FAILURE:
             return {
                 ...initialState,
+                authError,
             };
         case authConstants.REGISTER_SUCCESS:
             return {
                 ...state,
                 authInProgress: false,
-                authError,
                 user,
             };
         default:

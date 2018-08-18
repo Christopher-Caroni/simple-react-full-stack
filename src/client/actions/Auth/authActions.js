@@ -1,5 +1,6 @@
 import axios from 'axios';
 import authConstants from '../../constants/Auth/authConstants';
+import { transformHttpError } from './authHelpers';
 
 const USER_API_URL = '/api/auth';
 
@@ -79,7 +80,7 @@ export function signup(userCredentials) {
                 dispatch(signupSuccess(res.data));
             },
             err => {
-                dispatch(signupFailure(err));
+                dispatch(signupFailure(transformHttpError(err)));
             }
         );
     };

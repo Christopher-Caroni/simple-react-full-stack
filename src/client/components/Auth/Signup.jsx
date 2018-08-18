@@ -8,9 +8,7 @@ export class Signup extends Component {
 
         auth: PropTypes.shape({
             authError: PropTypes.shape({
-                response: PropTypes.shape({
-                    status: PropTypes.number.isRequired,
-                }).isRequired,
+                msg: PropTypes.string.isRequired,
             }),
         }).isRequired,
     };
@@ -20,7 +18,6 @@ export class Signup extends Component {
         username: '',
         password: '',
         passwordConf: '',
-        errMessage: '',
     };
 
     handleChange = (e, { name, value }) => {
@@ -34,32 +31,14 @@ export class Signup extends Component {
         signup({ username, password, passwordConf });
     };
 
-    errorMessage = () => {
-        const { errMessage } = this.state;
+    render() {
+        const { isLoading, username, password, passwordConf } = this.state;
         const {
-            authError: { response: { status } } = { response: { status: 0 } },
+            auth: { authError },
         } = this.props;
 
-        if (errMessage) return errMessage;
-
-        switch (status) {
-            default:
-            case 401:
-                return 'Login failed, please verify your credentials';
-        }
-    };
-
-    render() {
-        const {
-            isLoading,
-            username,
-            password,
-            passwordConf,
-            errMessage,
-        } = this.state;
-        const { authError } = this.props;
-
-        const error = !!errMessage || !!authError;
+        const hasError = !!authError;
+        const errorMessage = hasError ? authError.msg : 'Unknown error';
 
         return (
             <Grid verticalAlign="middle" centered>
@@ -71,7 +50,7 @@ export class Signup extends Component {
 
                     <Form
                         loading={isLoading}
-                        error={error}
+                        error={hasError}
                         onSubmit={this.submit}
                         size="large"
                     >
@@ -112,7 +91,7 @@ export class Signup extends Component {
                             <Message
                                 error
                                 header="Error"
-                                content={this.errorMessage()}
+                                content={errorMessage}
                             />
                         </Segment>
                     </Form>
