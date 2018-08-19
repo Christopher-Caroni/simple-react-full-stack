@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 
-import { signup } from './duck/authActions';
-import Signup from './Signup';
+import { login } from './duck/authActions';
+import Login from './Login';
 
 const mapDispatchToProps = dispatch => ({
-    signup: user => dispatch(signup(user)),
+    login: credentials => dispatch(login(credentials)),
 });
 
 const mapStateToProps = state => {
@@ -14,9 +14,9 @@ const mapStateToProps = state => {
     };
 };
 
-const SignupContainer = connect(
+const LoginContainer = connect(
     mapStateToProps,
     mapDispatchToProps
-)(Signup);
+)(Login);
 
-export default SignupContainer;
+export default LoginContainer;

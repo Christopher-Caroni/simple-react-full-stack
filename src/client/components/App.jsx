@@ -6,8 +6,9 @@ import { hot } from 'react-hot-loader';
 import { Link, Route, Switch } from 'react-router-dom';
 import { List, Segment } from 'semantic-ui-react';
 
-import SignupContainer from './auth/SignupContainer';
 import HomeContainer from '../containers/HomeContainer';
+import LoginContainer from './auth/LoginContainer';
+import SignupContainer from './auth/SignupContainer';
 
 const App = () => (
     <>
@@ -26,6 +27,7 @@ const App = () => (
         </Segment>
 
         <Switch>
+            <Route exact path="/web/login" component={LoginContainer} />
             <Route exact path="/web/signup" component={SignupContainer} />
             <Route exact path="/web" component={HomeContainer} />
         </Switch>

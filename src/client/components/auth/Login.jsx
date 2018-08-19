@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Form, Message, Segment, Header, Grid, Icon } from 'semantic-ui-react';
 
-export default class Signup extends Component {
+export default class Login extends Component {
     static propTypes = {
-        signup: PropTypes.func.isRequired,
+        login: PropTypes.func.isRequired,
 
         auth: PropTypes.shape({
-            signupError: PropTypes.shape({
+            loginError: PropTypes.shape({
                 msg: PropTypes.string.isRequired,
                 usernameError: PropTypes.bool,
                 passwordError: PropTypes.bool,
@@ -19,7 +19,6 @@ export default class Signup extends Component {
         isLoading: false,
         username: '',
         password: '',
-        passwordConf: '',
     };
 
     handleChange = (e, { name, value }) => {
@@ -27,29 +26,29 @@ export default class Signup extends Component {
     };
 
     submit = () => {
-        const { username, password, passwordConf } = this.state;
-        const { signup } = this.props;
+        const { username, password } = this.state;
+        const { login } = this.props;
 
-        signup({ username, password, passwordConf });
+        login({ username, password });
     };
 
     render() {
-        const { isLoading, username, password, passwordConf } = this.state;
+        const { isLoading, username, password } = this.state;
         const {
-            auth: { signupError },
+            auth: { loginError },
         } = this.props;
 
         const {
             msg: errorMessage,
             usernameError,
             passwordError,
-        } = signupError || {
+        } = loginError || {
             noError: true,
             usernameError: false,
             passwordError: false,
         };
 
-        const hasError = !!signupError && !signupError.noError;
+        const hasError = !!loginError && !loginError.noError;
 
         return (
             <Grid verticalAlign="middle" centered>
@@ -88,19 +87,8 @@ export default class Signup extends Component {
                                 error={passwordError}
                                 onChange={this.handleChange}
                             />
-                            <Form.Input
-                                fluid
-                                icon="lock"
-                                iconPosition="left"
-                                placeholder="Confirm your password"
-                                type="password"
-                                name="passwordConf"
-                                value={passwordConf}
-                                error={passwordError}
-                                onChange={this.handleChange}
-                            />
 
-                            <Form.Button fluid content="Signup" color="teal" />
+                            <Form.Button fluid content="Login" color="teal" />
 
                             <Message
                                 error
