@@ -3,28 +3,16 @@ import '../app.css';
 
 import React from 'react';
 import { hot } from 'react-hot-loader';
-import { Link, Route, Switch } from 'react-router-dom';
-import { List, Segment } from 'semantic-ui-react';
+import { Route, Switch } from 'react-router-dom';
 
 import HomeContainer from '../containers/HomeContainer';
 import LoginContainer from './auth/LoginContainer';
 import SignupContainer from './auth/SignupContainer';
+import Navbar from './navbar/Navbar';
 
 const App = () => (
     <>
-        <Segment>
-            <List bulleted>
-                <List.Item>
-                    <Link to="/web">Home</Link>{' '}
-                </List.Item>
-                <List.Item>
-                    <Link to="/web/login">Login</Link>{' '}
-                </List.Item>
-                <List.Item>
-                    <Link to="/web/signup">Signup</Link>{' '}
-                </List.Item>
-            </List>
-        </Segment>
+        <Navbar />
 
         <Switch>
             <Route exact path="/web/login" component={LoginContainer} />
