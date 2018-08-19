@@ -1,6 +1,7 @@
 import axios from 'axios';
 import authTypes from './authTypes';
 import { transformHttpError } from './authHelpers';
+import history from '../../../helpers/history';
 
 const USER_API_URL = '/api/auth';
 
@@ -31,6 +32,7 @@ export function login(user) {
         return axios.post(`${USER_API_URL}/login`, user).then(
             res => {
                 dispatch(loginSuccess(res.data));
+                history.push('/web');
             },
             err => {
                 dispatch(loginFailure(transformHttpError(err)));
@@ -78,6 +80,7 @@ export function signup(userCredentials) {
         return axios.post(`${USER_API_URL}/register`, userCredentials).then(
             res => {
                 dispatch(signupSuccess(res.data));
+                history.push('/web/login');
             },
             err => {
                 dispatch(signupFailure(transformHttpError(err)));
