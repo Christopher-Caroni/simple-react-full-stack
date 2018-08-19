@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Loader } from 'semantic-ui-react';
+import { Dimmer, Loader, Header } from 'semantic-ui-react';
 
-const Authenticated = ({
+const AuthenticatedRouter = ({
     auth: { authenticated, loginInProgress },
     component: TargetComponent,
     render,
@@ -13,13 +13,23 @@ const Authenticated = ({
     <Route
         {...rest}
         render={props => {
-            if (loginInProgress) return <Loader active>Logging in...</Loader>;
+            if (loginInProgress)
+                return (
+                    <Dimmer active page>
+                        <Header as="h2" icon inverted>
+                            <Loader active>Logging in...</Loader>
+                        </Header>
+                    </Dimmer>
+                );
             if (authenticated) {
                 if (TargetComponent) {
                     return <TargetComponent {...props} />;
                 }
                 return render();
             }
+            console.error(
+                'Tried to access authenticated page but not authenticated'
+            );
             return (
                 <Redirect
                     to={{
@@ -32,7 +42,7 @@ const Authenticated = ({
     />
 );
 
-Authenticated.propTypes = {
+AuthenticatedRouter.propTypes = {
     auth: PropTypes.shape({
         loginInProgress: PropTypes.bool.isRequired,
         authenticated: PropTypes.bool.isRequired,
@@ -48,9 +58,9 @@ const mapStateToProps = state => {
     };
 };
 
-const AuthenticatedContainer = connect(
+const Authenticated = connect(
     mapStateToProps,
     mapDispatchToProps
-)(Authenticated);
+)(AuthenticatedRouter);
 
-export default AuthenticatedContainer;
+export default Authenticated;
