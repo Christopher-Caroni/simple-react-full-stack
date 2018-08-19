@@ -88,3 +88,5 @@ export function signup(userCredentials) {
         );
     };
 }
+
+export function logout() {}

@@ -16,6 +16,14 @@ class AccountAction extends Component {
         this.props.history.push(href);
     };
 
+    logout = e => {
+        e.preventDefault();
+        this.props.history.push({
+            pathname: '/web/logout',
+            state: { confirmLogout: true },
+        });
+    };
+
     content = () => {
         const {
             auth: {
@@ -38,7 +46,7 @@ class AccountAction extends Component {
                                     icon="power off"
                                     content="Logout"
                                     href="/web/logout"
-                                    onClick={this.link}
+                                    onClick={this.logout}
                                 />
                             </Dropdown.Menu>
                         </Dropdown>

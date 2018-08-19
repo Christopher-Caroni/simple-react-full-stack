@@ -10,6 +10,7 @@ import NotFound from '../pages/NotFound';
 import LoginContainer from './auth/LoginContainer';
 import SignupContainer from './auth/SignupContainer';
 import Navbar from './navbar/Navbar';
+import LogoutContainer from './auth/LogoutContainer';
 
 const App = () => (
     <>
@@ -17,6 +18,7 @@ const App = () => (
 
         <Switch>
             <Route exact path="/web/login" component={LoginContainer} />
+            <Route exact path="/web/logout" component={LogoutContainer} />
             <Route exact path="/web/signup" component={SignupContainer} />
             <Route exact path="/web" component={HomeContainer} />
             <Route component={NotFound} />
