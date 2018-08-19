@@ -89,4 +89,37 @@ export function signup(userCredentials) {
     };
 }
 
-export function logout() {}
+function logoutRequest() {
+    return {
+        type: authTypes.LOGOUT_REQUEST,
+    };
+}
+
+function logoutSuccess() {
+    return {
+        type: authTypes.LOGOUT_SUCCESS,
+    };
+}
+
+function logoutFailure(logoutError) {
+    return {
+        type: authTypes.LOGOUT_FAILURE,
+        payload: { logoutError },
+    };
+}
+
+export function logout() {
+    return dispatch => {
+        dispatch(logoutRequest());
+
+        return axios.post(`${USER_API_URL}/logout`).then(
+            () => {
+                dispatch(logoutSuccess());
+                history.push('/web/login');
+            },
+            err => {
+                dispatch(signupFailure(transformHttpError(err)));
+            }
+        );
+    };
+}
