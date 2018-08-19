@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
-import { signup } from '../../actions/Auth/authActions';
-import { Signup } from '../../components/Auth/Signup';
+import { signup } from './duck/authActions';
+import { Signup } from './Signup';
 
 const mapDispatchToProps = dispatch => ({
     signup: user => dispatch(signup(user)),

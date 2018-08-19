@@ -1,4 +1,4 @@
-import authConstants from '../../constants/Auth/authConstants';
+import authTypes from './authTypes';
 
 const initialUser = {
     username: '',
@@ -23,34 +23,34 @@ export default function userReducer(state = initialState, action) {
     } = action;
 
     switch (action.type) {
-        case authConstants.LOGIN_REQUEST:
+        case authTypes.LOGIN_REQUEST:
             return {
                 ...state,
                 authInProgress: true,
             };
-        case authConstants.LOGIN_FAILURE:
+        case authTypes.LOGIN_FAILURE:
             return {
                 ...initialState,
                 authError,
             };
-        case authConstants.LOGIN_SUCCESS:
+        case authTypes.LOGIN_SUCCESS:
             return {
                 ...state,
                 authInProgress: false,
                 authenticated: true,
                 user,
             };
-        case authConstants.REGISTER_REQUEST:
+        case authTypes.REGISTER_REQUEST:
             return {
                 ...state,
                 authInProgress: true,
             };
-        case authConstants.REGISTER_FAILURE:
+        case authTypes.REGISTER_FAILURE:
             return {
                 ...initialState,
                 signupError,
             };
-        case authConstants.REGISTER_SUCCESS:
+        case authTypes.REGISTER_SUCCESS:
             return {
                 ...state,
                 authInProgress: false,

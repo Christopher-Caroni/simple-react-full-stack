@@ -1,25 +1,25 @@
 import axios from 'axios';
-import authConstants from '../../constants/Auth/authConstants';
+import authTypes from './authTypes';
 import { transformHttpError } from './authHelpers';
 
 const USER_API_URL = '/api/auth';
 
 function loginRequest() {
     return {
-        type: authConstants.LOGIN_REQUEST,
+        type: authTypes.LOGIN_REQUEST,
     };
 }
 
 function loginSuccess(user) {
     return {
-        type: authConstants.LOGIN_SUCCESS,
+        type: authTypes.LOGIN_SUCCESS,
         payload: { user },
     };
 }
 
 function loginFailure(error) {
     return {
-        type: authConstants.LOGIN_FAILURE,
+        type: authTypes.LOGIN_FAILURE,
         payload: { error },
     };
 }
@@ -53,20 +53,20 @@ export function refreshCurrentUser() {
 
 function signupRequest() {
     return {
-        type: authConstants.REGISTER_REQUEST,
+        type: authTypes.REGISTER_REQUEST,
     };
 }
 
 function signupSuccess(user) {
     return {
-        type: authConstants.REGISTER_SUCCESS,
+        type: authTypes.REGISTER_SUCCESS,
         payload: { user },
     };
 }
 
 function signupFailure(signupError) {
     return {
-        type: authConstants.REGISTER_FAILURE,
+        type: authTypes.REGISTER_FAILURE,
         payload: { signupError },
     };
 }

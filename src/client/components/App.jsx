@@ -6,7 +6,7 @@ import { hot } from 'react-hot-loader';
 import { Link, Route, Switch } from 'react-router-dom';
 import { List, Segment } from 'semantic-ui-react';
 
-import SignupContainer from '../containers/Auth/SignupContainer';
+import SignupContainer from './auth/SignupContainer';
 import HomeContainer from '../containers/HomeContainer';
 
 const App = () => (

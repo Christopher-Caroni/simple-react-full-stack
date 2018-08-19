@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { login, refreshCurrentUser } from '../actions/Auth/authActions';
+import { login, refreshCurrentUser } from '../components/auth/duck/authActions';
 import Home from '../components/Home';
 
 const mapDispatchToProps = dispatch => ({
