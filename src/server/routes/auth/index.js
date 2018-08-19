@@ -47,7 +47,8 @@ AuthRouter.post(
             }
             req.login(user, loginErr => {
                 if (loginErr) {
-                    return next(loginErr);
+                    winston.error(loginErr);
+                    return res.status(500).json({ msg: 'Server error' });
                 }
                 return res.status(200).json(req.user);
             });

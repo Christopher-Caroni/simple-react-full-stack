@@ -38,6 +38,7 @@ export default function userReducer(state = initialState, action) {
                 authInProgress: false,
                 authenticated: true,
                 user,
+                loginError: undefined,
             };
         case authTypes.REGISTER_REQUEST:
             return {
@@ -54,6 +55,7 @@ export default function userReducer(state = initialState, action) {
                 ...state,
                 authInProgress: false,
                 user,
+                signupError: undefined,
             };
         default:
             return state;
