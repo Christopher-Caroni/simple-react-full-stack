@@ -1,11 +1,10 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
 import ReactRouterPropTypes from 'react-router-prop-types';
-import { Button, Menu, Icon, Dropdown } from 'semantic-ui-react';
+import { Button, Dropdown, Icon, Menu } from 'semantic-ui-react';
 
-import AdminkLinks from './AdminLinks';
 import ExcludeRoute from '../generic/ExcludeRoute';
+import AdminkLinks from './AdminLinks';
 
 class AccountAction extends Component {
     componentDidMount() {
