@@ -6,7 +6,8 @@ const initialUser = {
 
 const initialState = {
     authenticated: false,
-    authInProgress: false,
+    loginInProgress: false,
+    signupInProgress: false,
     user: {
         username: '',
     },
@@ -25,7 +26,7 @@ export default function userReducer(state = initialState, action) {
         case authTypes.LOGIN_REQUEST:
             return {
                 ...state,
-                authInProgress: true,
+                loginInProgress: true,
             };
         case authTypes.LOGIN_FAILURE:
             return {
@@ -35,7 +36,7 @@ export default function userReducer(state = initialState, action) {
         case authTypes.LOGIN_SUCCESS:
             return {
                 ...state,
-                authInProgress: false,
+                loginInProgress: false,
                 authenticated: true,
                 user,
                 loginError: undefined,
@@ -43,7 +44,7 @@ export default function userReducer(state = initialState, action) {
         case authTypes.REGISTER_REQUEST:
             return {
                 ...state,
-                authInProgress: true,
+                signupInProgress: true,
             };
         case authTypes.REGISTER_FAILURE:
             return {
@@ -53,7 +54,7 @@ export default function userReducer(state = initialState, action) {
         case authTypes.REGISTER_SUCCESS:
             return {
                 ...state,
-                authInProgress: false,
+                signupInProgress: false,
                 user,
                 signupError: undefined,
             };

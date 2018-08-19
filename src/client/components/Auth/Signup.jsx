@@ -7,6 +7,7 @@ export default class Signup extends Component {
         signup: PropTypes.func.isRequired,
 
         auth: PropTypes.shape({
+            signupInProgress: PropTypes.bool.isRequired,
             signupError: PropTypes.shape({
                 msg: PropTypes.string.isRequired,
                 usernameError: PropTypes.bool,
@@ -16,7 +17,6 @@ export default class Signup extends Component {
     };
 
     state = {
-        isLoading: false,
         username: '',
         password: '',
         passwordConf: '',
@@ -34,9 +34,9 @@ export default class Signup extends Component {
     };
 
     render() {
-        const { isLoading, username, password, passwordConf } = this.state;
+        const { username, password, passwordConf } = this.state;
         const {
-            auth: { signupError },
+            auth: { signupInProgress, signupError },
         } = this.props;
 
         const {
@@ -60,7 +60,7 @@ export default class Signup extends Component {
                     </Header>
 
                     <Form
-                        loading={isLoading}
+                        loading={signupInProgress}
                         error={hasError}
                         onSubmit={this.submit}
                         size="large"

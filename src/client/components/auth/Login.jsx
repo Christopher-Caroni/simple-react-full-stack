@@ -7,6 +7,7 @@ export default class Login extends Component {
         login: PropTypes.func.isRequired,
 
         auth: PropTypes.shape({
+            loginInProgress: PropTypes.bool.isRequired,
             loginError: PropTypes.shape({
                 msg: PropTypes.string.isRequired,
                 usernameError: PropTypes.bool,
@@ -16,7 +17,6 @@ export default class Login extends Component {
     };
 
     state = {
-        isLoading: false,
         username: '',
         password: '',
     };
@@ -33,9 +33,9 @@ export default class Login extends Component {
     };
 
     render() {
-        const { isLoading, username, password } = this.state;
+        const { username, password } = this.state;
         const {
-            auth: { loginError },
+            auth: { loginInProgress, loginError },
         } = this.props;
 
         const {
@@ -59,7 +59,7 @@ export default class Login extends Component {
                     </Header>
 
                     <Form
-                        loading={isLoading}
+                        loading={loginInProgress}
                         error={hasError}
                         onSubmit={this.submit}
                         size="large"

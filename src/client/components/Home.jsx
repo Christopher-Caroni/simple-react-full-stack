@@ -10,7 +10,7 @@ const Home = props => {
     const {
         auth: {
             authenticated,
-            authInProgress,
+            loginInProgress,
             user: { username },
         },
         refreshUser,
@@ -21,7 +21,7 @@ const Home = props => {
         text = username
             ? `Welcome ${username}`
             : `Could not find your username`;
-    } else if (authInProgress) {
+    } else if (loginInProgress) {
         text = 'Connecting...';
     } else {
         text = `You are not connected`;
