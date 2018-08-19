@@ -5,6 +5,7 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import { Button, Menu, Icon, Dropdown } from 'semantic-ui-react';
 
 import AdminkLinks from './AdminLinks';
+import ExcludeRoute from '../generic/ExcludeRoute';
 
 class AccountAction extends Component {
     componentDidMount() {
@@ -69,10 +70,10 @@ class AccountAction extends Component {
     render() {
         return (
             <Menu.Menu position="right">
-                <Switch>
-                    <Route exact path="/web/login" render={() => null} />
-                    <Route render={() => this.content()} />
-                </Switch>
+                <ExcludeRoute
+                    exclusions={['/web/login']}
+                    content={this.content}
+                />
             </Menu.Menu>
         );
     }
