@@ -73,7 +73,7 @@ export function refreshCurrentUser() {
                 dispatch(refreshFailure(transformHttpError(err)));
             }
         );
-    };;
+    };
 }
 
 function signupRequest() {

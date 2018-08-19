@@ -48,7 +48,9 @@ export default function userReducer(state = initialState, action) {
             };
         case authTypes.REFRESH_SUCCESS:
             return {
-                ...initialState,
+                ...state,
+                authenticated: true,
+                loginInProgress: false,
                 user,
             };
         case authTypes.REFRESH_FAILURE:
