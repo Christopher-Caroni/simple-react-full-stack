@@ -21,18 +21,37 @@ AuthRouter.post(
     '/login',
     (req, res, next) => {
         const { username, password } = req.body;
-        if (!username) res.status(400).json({ msg: 'No username provided' });
-        if (!password) res.status(400).json({ msg: 'No password provided' });
-        next();
-    },
-    passport.authenticate(LOCAL_STRATEGY_KEY),
-    (req, res) => {
-        if (req.isAuthenticated) {
-            res.status(200).json(req.user);
-        } else {
-            res.status(401).end({ msg: 'Authentication failed' });
+        if (!username) {
+            return res.status(400).json({
+                msg: 'No username provided',
+                usernameError: true,
+            });
         }
-    }
+        if (!password) {
+            return res.status(400).json({
+                msg: 'No password provided',
+                passwordError: true,
+            });
+        }
+        return next();
+    },
+    (req, res, next) =>
+        passport.authenticate(LOCAL_STRATEGY_KEY, (authErr, user) => {
+            if (authErr) {
+                return next(authErr);
+            }
+            if (!user) {
+                return res.status(401).json({
+                    msg: 'Login failed. Please check your credentials',
+                });
+            }
+            req.login(user, loginErr => {
+                if (loginErr) {
+                    return next(loginErr);
+                }
+                return res.status(200).json(req.user);
+            });
+        })(req, res, next)
 );
 AuthRouter.post('/register', (req, res, next) => {
     const { username, password, passwordConf } = req.body;

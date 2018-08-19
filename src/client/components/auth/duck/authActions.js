@@ -17,10 +17,10 @@ function loginSuccess(user) {
     };
 }
 
-function loginFailure(error) {
+function loginFailure(loginError) {
     return {
         type: authTypes.LOGIN_FAILURE,
-        payload: { error },
+        payload: { loginError },
     };
 }
 
@@ -33,7 +33,7 @@ export function login(user) {
                 dispatch(loginSuccess(res.data));
             },
             err => {
-                dispatch(loginFailure(err));
+                dispatch(loginFailure(transformHttpError(err)));
             }
         );
     };

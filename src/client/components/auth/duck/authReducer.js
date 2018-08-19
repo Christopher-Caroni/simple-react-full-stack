@@ -10,12 +10,11 @@ const initialState = {
     user: {
         username: '',
     },
-    authError: undefined,
 };
 
 export default function userReducer(state = initialState, action) {
     const {
-        payload: { authError, signupError, user } = {
+        payload: { signupError, loginError, user } = {
             authError: new Error('Unknown error'),
             signupError: new Error('Unknown error'),
             user: initialUser,
@@ -31,7 +30,7 @@ export default function userReducer(state = initialState, action) {
         case authTypes.LOGIN_FAILURE:
             return {
                 ...initialState,
-                authError,
+                loginError,
             };
         case authTypes.LOGIN_SUCCESS:
             return {

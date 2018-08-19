@@ -1,8 +1,10 @@
 export function transformHttpError(err) {
+    console.dir(err);
     const {
-        response: { data } = {
+        response: { data: { msg } } = {
             data: { msg: 'Unknown error' },
         },
     } = err;
-    return data;
+    const errMsg = msg || 'Unknown error';
+    return { msg: errMsg };
 }
