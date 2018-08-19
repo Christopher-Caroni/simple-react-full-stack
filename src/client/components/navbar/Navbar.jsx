@@ -10,7 +10,15 @@ const Navbar = ({ history }) => {
     };
 
     return (
-        <Menu size="large" inverted color="blue" borderless fixed="top">
+        <Menu
+            size="large"
+            inverted
+            color="blue"
+            borderless
+            style={{
+                borderRadius: '0px',
+            }}
+        >
             <Menu.Item
                 link
                 header
