@@ -1,24 +1,30 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { Button, Menu, Icon, Dropdown } from 'semantic-ui-react';
 
 import AdminkLinks from './AdminLinks';
 
-const AccountAction = ({ auth, history }) => {
-    const {
-        authenticated,
-        loginInProgress,
-        user: { username },
-    } = auth;
+class AccountAction extends Component {
+    componentDidMount() {
+        this.props.refresh();
+    }
 
-    const link = (e, { href }) => {
+    link = (e, { href }) => {
         e.preventDefault();
-        history.push(href);
+        this.props.history.push(href);
     };
 
-    const content = () => {
+    content = () => {
+        const {
+            auth: {
+                authenticated,
+                loginInProgress,
+                user: { username },
+            },
+        } = this.props;
+
         if (authenticated) {
             return (
                 <>
@@ -32,7 +38,7 @@ const AccountAction = ({ auth, history }) => {
                                     icon="power off"
                                     content="Logout"
                                     href="/web/logout"
-                                    onClick={link}
+                                    onClick={this.link}
                                 />
                             </Dropdown.Menu>
                         </Dropdown>
@@ -46,21 +52,23 @@ const AccountAction = ({ auth, history }) => {
                     loading={loginInProgress}
                     content="Login"
                     href="/web/login"
-                    onClick={link}
+                    onClick={this.link}
                 />
             </Menu.Item>
         );
     };
 
-    return (
-        <Menu.Menu position="right">
-            <Switch>
-                <Route exact path="/web/login" render={() => null} />
-                <Route render={() => content()} />
-            </Switch>
-        </Menu.Menu>
-    );
-};
+    render() {
+        return (
+            <Menu.Menu position="right">
+                <Switch>
+                    <Route exact path="/web/login" render={() => null} />
+                    <Route render={() => this.content()} />
+                </Switch>
+            </Menu.Menu>
+        );
+    }
+}
 
 AccountAction.propTypes = {
     auth: PropTypes.shape({
@@ -70,6 +78,7 @@ AccountAction.propTypes = {
             username: PropTypes.string.isRequired,
         }),
     }).isRequired,
+    refresh: PropTypes.func.isRequired,
     history: ReactRouterPropTypes.history.isRequired,
 };
 

@@ -48,7 +48,7 @@ export function refreshCurrentUser() {
                 dispatch(loginSuccess(res.data));
             },
             err => {
-                dispatch(loginFailure(err));
+                dispatch(loginFailure(transformHttpError(err)));
             }
         );
 }
