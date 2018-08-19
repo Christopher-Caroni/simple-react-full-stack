@@ -42,6 +42,20 @@ export default function userReducer(state = initialState, action) {
                 loginError: undefined,
             };
 
+        case authTypes.REFRESH_REQUEST:
+            return {
+                ...state,
+            };
+        case authTypes.REFRESH_SUCCESS:
+            return {
+                ...initialState,
+                user,
+            };
+        case authTypes.REFRESH_FAILURE:
+            return {
+                ...initialState,
+            };
+
         case authTypes.REGISTER_REQUEST:
             return {
                 ...state,

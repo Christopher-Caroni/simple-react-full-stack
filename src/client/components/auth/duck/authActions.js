@@ -41,16 +41,39 @@ export function login(user) {
     };
 }
 
+function refreshRequest() {
+    return {
+        type: authTypes.REFRESH_REQUEST,
+    };
+}
+
+function refreshSuccess(user) {
+    return {
+        type: authTypes.REFRESH_SUCCESS,
+        payload: { user },
+    };
+}
+
+function refreshFailure(refreshError) {
+    return {
+        type: authTypes.REFRESH_FAILURE,
+        payload: { refreshError },
+    };
+}
+
 export function refreshCurrentUser() {
-    return dispatch =>
-        axios.get(`${USER_API_URL}`).then(
+    return dispatch => {
+        dispatch(refreshRequest());
+
+        return axios.get(`${USER_API_URL}`).then(
             res => {
-                dispatch(loginSuccess(res.data));
+                dispatch(refreshSuccess(res.data));
             },
             err => {
-                dispatch(loginFailure(transformHttpError(err)));
+                dispatch(refreshFailure(transformHttpError(err)));
             }
         );
+    };;
 }
 
 function signupRequest() {
